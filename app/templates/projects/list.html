@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>کلان‌پروژه‌ها</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+
+        <a
+            href="/dashboard"
+            class="navbar-brand"
+        >
+            سامانه مدیریت کلان‌پروژه‌ها
+        </a>
+
+        <div class="text-white">
+
+            {{ user.full_name }}
+
+            <a
+                href="/logout"
+                class="btn btn-sm btn-light me-2"
+            >
+                خروج
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3>
+            کلان‌پروژه‌ها
+        </h3>
+
+        <a
+            href="/projects/new"
+            class="btn btn-primary"
+        >
+            + ایجاد کلان‌پروژه
+        </a>
+
+    </div>
+
+
+    {% if projects %}
+
+    <div class="card shadow-sm">
+
+        <div class="card-body p-0">
+
+            <table class="table table-hover mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>عنوان</th>
+                        <th>مسئول</th>
+                        <th>معاونت / واحد</th>
+                        <th>وضعیت</th>
+                        <th>پیشرفت</th>
+                        <th>عملیات</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for project in projects %}
+
+                    <tr>
+
+                        <td>
+                            {{ project.title }}
+                        </td>
+
+                        <td>
+                            {% if project.manager %}
+                                {{ project.manager.full_name }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if project.owner_department %}
+                                {{ project.owner_department.name }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ project.status }}
+                        </td>
+
+                        <td>
+                            {{ project.progress_percent }}%
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/projects/{{ project.id }}"
+                                class="btn btn-sm btn-outline-primary"
+                            >
+                                مشاهده
+                            </a>
+
+                            <a
+                                href="/projects/{{ project.id }}/edit"
+                                class="btn btn-sm btn-outline-secondary"
+                            >
+                                ویرایش
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info">
+
+        هنوز هیچ کلان‌پروژه‌ای ثبت نشده است.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

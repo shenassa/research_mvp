@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>داشبورد</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+
+        <span class="navbar-brand">
+            سامانه مدیریت کلان‌پروژه‌ها
+        </span>
+
+        <div class="text-white">
+            {{ user.full_name }}
+
+            <a
+                href="/logout"
+                class="btn btn-sm btn-light me-2"
+            >
+                خروج
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+
+    <h3 class="mb-4">
+        داشبورد
+    </h3>
+
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        کلان‌پروژه‌ها
+                    </h6>
+
+                    <h2>
+                        {{ project_count }}
+                    </h2>
+
+                    <a
+                        href="/projects"
+                        class="btn btn-primary"
+                    >
+                        مشاهده پروژه‌ها
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        زیرپروژه‌ها
+                    </h6>
+
+                    <h2>
+                        {{ subproject_count }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        مسائل باز
+                    </h6>
+
+                    <h2>
+                        {{ open_issues }}
+                    </h2>
+
+                    <a
+                        href="/issues"
+                        class="btn btn-warning"
+                    >
+                        مشاهده مسائل
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card mt-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5>
+                دسترسی سریع
+            </h5>
+
+            <div class="mt-3">
+
+                <a
+                    href="/projects"
+                    class="btn btn-outline-primary ms-2"
+                >
+                    مدیریت کلان‌پروژه‌ها
+                </a>
+
+                <a
+                    href="/issues"
+                    class="btn btn-outline-warning ms-2"
+                >
+                    مسائل و موانع
+                </a>
+
+                {% if user.role == "ADMIN" %}
+                <a
+                    href="/users"
+                    class="btn btn-outline-secondary"
+                >
+                    مدیریت کاربران
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
